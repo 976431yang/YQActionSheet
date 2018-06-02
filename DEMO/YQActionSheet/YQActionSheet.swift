@@ -97,6 +97,7 @@ class YQActionSheet: UIView {
             cellView.addSubview(cell)
             
             cell.didClik = { [weak self] selcell in
+                self?._dismiss()
                 self?.didSelectCell?(selcell,i)
             }
             
@@ -246,7 +247,11 @@ class YQActionSheet: UIView {
             }
         }
         
-        UIApplication.shared.windows.last?.addSubview(self)
+        var lastWindow = UIApplication.shared.windows.last
+        if  String(describing: lastWindow).contains("Keyboard") == true {
+            lastWindow = UIApplication.shared.windows[UIApplication.shared.windows.count - 2]
+        }
+        lastWindow?.addSubview(self)
         if config.backgroundAnimation == true {
             UIView.animate(withDuration: config.animationDuration, animations: {
                 action()
