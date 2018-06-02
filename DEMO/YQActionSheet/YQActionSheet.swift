@@ -88,12 +88,17 @@ class YQActionSheet: UIView {
             config.headerHeight = 0
             configuration?.headerHeight = 0
         }
-        for title in actionTitles {
+        for i in 0 ..< actionTitles.count {
+            let title = actionTitles[i]
             let cell = YQActionSheetCell()
             cell.title = title
             
             cells.append(cell)
             cellView.addSubview(cell)
+            
+            cell.didClik = { [weak self] selcell in
+                self?.didSelectCell?(selcell,i)
+            }
             
             if let userCellConfig = cellCommonConfiguration {
                 cell.config = userCellConfig
