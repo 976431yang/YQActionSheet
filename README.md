@@ -11,7 +11,7 @@
 
 ### 使用举例：
 
-###### 最简单使用
+##### 最简单使用
 
 ```Swift
 	YQActionSheet(actionTitles: ["123","234","3456","5467"]).show()
@@ -24,7 +24,7 @@
 
 ---
 
-###### 带标题
+##### 带标题
 
 ```Swift
 	YQActionSheet(headerTitle: "标题", actionTitles: ["123","234","3456","5467"]).show()
@@ -36,7 +36,7 @@
 
 ---
 
-###### 毛玻璃背景
+##### 毛玻璃背景
 
 ```Swift
 	let actionSheet = YQActionSheet(headerTitle: "标题",
@@ -51,7 +51,7 @@
 
 ---
 
-###### 更换背景毛玻璃效果
+##### 更换背景毛玻璃效果
 
 ```Swift
 	let actionSheet = YQActionSheet(headerTitle: "标题",
@@ -67,7 +67,7 @@
 
 ---
 
-###### 调整cell间隔，cell背景毛玻璃
+##### 调整cell间隔，cell背景毛玻璃
 
 ```Swift
 	let actionSheet = YQActionSheet(headerTitle: "标题",
@@ -92,7 +92,7 @@
 
 ---
 
-###### 为每个Cell单独设置效果
+##### 为每个Cell单独设置效果
 
 ```Swift
 	let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467","3456","5467","5467"])
@@ -127,7 +127,7 @@
 
 ---
 
-###### 一种风格。。，
+##### 一种风格。。，
 
 ```Swift
 	let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467"])
@@ -153,7 +153,7 @@
 
 ---
 
-###### 一种风格。。，
+##### 一种风格。。，
 
 ```Swift
 	let actionSheet = YQActionSheet(headerTitle: "标题",
@@ -180,7 +180,7 @@
 
 ---
 
-###### cell非常多的情况
+##### cell非常多的情况
 
 ```Swift
 	let actionSheet = YQActionSheet(headerTitle: "标题",
@@ -207,7 +207,7 @@
 
 ---
 
-###### 一种风格。。，
+##### 一种风格。。，
 
 ```Swift
 	let actionSheet = YQActionSheet(headerTitle: "标题",
@@ -236,7 +236,7 @@
 
 ---
 
-###### 单独设置Cell，不要取消选项
+##### 单独设置Cell，不要取消选项
 
 ```Swift
 	let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467"])
@@ -308,11 +308,11 @@
 - 回调：
 ```Swift
 	actionSheet.didSelectCell = { (cell,index) in
-    	// 选中回调
-    }
-    actionSheet.didCancel = {
+		// 选中回调
+	}
+	actionSheet.didCancel = {
 		// 取消回调      
-    }
+	}
 ```
 
 - 手动控制显示与消失：
