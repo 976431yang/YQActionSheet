@@ -39,7 +39,7 @@
 ##### 毛玻璃背景
 
 ```Swift
-	let actionSheet = YQActionSheet(headerTitle: "标题",
+    let actionSheet = YQActionSheet(headerTitle: "标题",
                                             actionTitles: ["123","234","3456","5467"])
     actionSheet.config.blurBack = true
     actionSheet.show()
@@ -54,7 +54,7 @@
 ##### 更换背景毛玻璃效果
 
 ```Swift
-	let actionSheet = YQActionSheet(headerTitle: "标题",
+    let actionSheet = YQActionSheet(headerTitle: "标题",
                                             actionTitles: ["123","234","3456","5467"])
     actionSheet.config.blurBack = true
     actionSheet.config.blurMode = .regular
@@ -70,7 +70,7 @@
 ##### 调整cell间隔，cell背景毛玻璃
 
 ```Swift
-	let actionSheet = YQActionSheet(headerTitle: "标题",
+    let actionSheet = YQActionSheet(headerTitle: "标题",
                                             actionTitles: ["123","234","3456","5467"])
             
     actionSheet.config.cellClearanceColor = UIColor.clear
@@ -95,7 +95,7 @@
 ##### 为每个Cell单独设置效果
 
 ```Swift
-	let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467","3456","5467","5467"])
+    let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467","3456","5467","5467"])
  
     actionSheet.config.cellClearanceColor = UIColor.clear
     actionSheet.config.distanceBetweenCell = 10
@@ -130,7 +130,7 @@
 ##### 一种风格。。，
 
 ```Swift
-	let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467"])
+    let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467"])
             
     actionSheet.config.cellClearanceColor = UIColor.clear
     actionSheet.config.distanceBetweenCell = 10
@@ -156,7 +156,7 @@
 ##### 一种风格。。，
 
 ```Swift
-	let actionSheet = YQActionSheet(headerTitle: "标题",
+    let actionSheet = YQActionSheet(headerTitle: "标题",
                                             actionTitles: ["123","234","3456","5467"])
             
     actionSheet.config.cellClearanceColor = UIColor.clear
@@ -183,7 +183,7 @@
 ##### cell非常多的情况
 
 ```Swift
-	let actionSheet = YQActionSheet(headerTitle: "标题",
+    let actionSheet = YQActionSheet(headerTitle: "标题",
                                             actionTitles: ["123","234","3456","5467","234","3456","5467","234","3456","5467","234","3456","5467"])
             
     actionSheet.config.cellClearanceColor = UIColor.clear
@@ -210,7 +210,7 @@
 ##### 一种风格。。，
 
 ```Swift
-	let actionSheet = YQActionSheet(headerTitle: "标题",
+    let actionSheet = YQActionSheet(headerTitle: "标题",
                                             actionTitles: ["123","234","3456","5467"])
             
     actionSheet.config.cellClearanceColor = UIColor.clear
@@ -239,7 +239,7 @@
 ##### 单独设置Cell，不要取消选项
 
 ```Swift
-	let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467"])
+    let actionSheet = YQActionSheet(actionTitles: ["123","234","3456","5467"])
             
 	actionSheet.config.cellClearanceColor = UIColor.clear
 	actionSheet.config.distanceBetweenCell = 10
