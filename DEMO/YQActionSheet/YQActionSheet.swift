@@ -9,19 +9,34 @@
 import UIKit
 
 class YQActionSheetConfiguration: NSObject {
-    var backgroundAnimation = true
-    var cellAnimation = true
-    var animationDuration: TimeInterval = 0.3
-    var distanceBetweenCell: CGFloat = 1
-    var cellDistanceToCancel: CGFloat = 15
-    var cellClearanceColor: UIColor = UIColor(red: 0.94, green: 0.95, blue: 0.95, alpha: 0.9)
-    var backgroudColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-    var blurBack: Bool = false
-    var blurMode: UIBlurEffectStyle = .dark
-    var withCancel: Bool = true
-    var cancelCellHeight: CGFloat = 50
-    var headerTitleColor: UIColor = UIColor.darkGray
-    var headerHeight: CGFloat = 30
+    /// 背景（半透颜色或模糊）动画进出（渐现）
+    @objc public var backgroundAnimation = true
+    /// 底部的选择项，动画进出（从底部）
+    @objc public var cellAnimation = true
+    /// 动画进出的时间
+    @objc public var animationDuration: TimeInterval = 0.3
+    /// 底部选项之间的间隔
+    @objc public var distanceBetweenCell: CGFloat = 1
+    /// 底部选项和“取消”选项之间的间隔
+    @objc public var cellDistanceToCancel: CGFloat = 15
+    /// 底部选项后面的颜色
+    @objc public var cellClearanceColor: UIColor = UIColor(red: 0.94, green: 0.95, blue: 0.95, alpha: 0.9)
+    /// 背景的颜色，建议设带透明度的颜色，在blurBack为false的时候有效
+    @objc public var backgroudColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+    /// 毛玻璃背景
+    @objc public var blurBack: Bool = false
+    /// 毛玻璃背景的风格，在blurBack为true的时候有效
+    @objc public var blurMode: UIBlurEffectStyle = .dark
+    /// 是否有取消选项
+    @objc public var withCancel: Bool = true
+    /// 取消选项的高度
+    @objc public var cancelCellHeight: CGFloat = 50
+    /// 标题的文字颜色
+    @objc public var headerTitleColor: UIColor = UIColor.darkGray
+    /// 标题高度
+    @objc public var headerHeight: CGFloat = 30
+    /// 点击了选项，自动隐藏
+    @objc public var toucheCellAutoHide: Bool = true
 }
 
 
@@ -29,25 +44,25 @@ class YQActionSheetConfiguration: NSObject {
 class YQActionSheet: UIView {
 
     /// 配置
-    var config: YQActionSheetConfiguration = YQActionSheetConfiguration()
+    @objc public var config: YQActionSheetConfiguration = YQActionSheetConfiguration()
     
     /// 选中回调
-    var didSelectCell: ((_ cell: YQActionSheetCell,_ index: Int) -> Void)?
+    @objc public var didSelectCell: ((_ cell: YQActionSheetCell,_ index: Int) -> Void)?
     /// 取消回调
-    var didCancel: (() -> Void)?
+    @objc public var didCancel: (() -> Void)?
     
     /// 展示
-    public func show() {
+    @objc public func show() {
         _show()
     }
     
     /// 消失
-    public func dismiss() {
+    @objc public func dismiss() {
         _dismiss()
     }
     
     /// 对每个cell执行一次配置block
-    public func applyConfigForEachCell(_ config:((_ cell: YQActionSheetCell,_ index: Int) -> Void)) {
+    @objc public func applyConfigForEachCell(_ config:((_ cell: YQActionSheetCell,_ index: Int) -> Void)) {
         for i in 0 ..< cells.count {
             let cell = cells[i]
             config(cell, i)
@@ -56,23 +71,41 @@ class YQActionSheet: UIView {
     }
     
     /// 所有的Cells
-    public var cells: [YQActionSheetCell] = []
+    @objc public var cells: [YQActionSheetCell] = []
     
     /// 取消的那行cell
-    public var cancelCell: YQActionSheetCell = {
+    @objc public var cancelCell: YQActionSheetCell = {
         let cell = YQActionSheetCell()
         cell.title = "取消"
         return cell
     }()
     
+    /// 标题Lable
+    @objc public var headerLab: UILabel = {
+        let lab = UILabel()
+        lab.font = UIFont.systemFont(ofSize: 12)
+        lab.textColor = YQActionSheetConfiguration().headerTitleColor
+        lab.textAlignment = .center
+        return lab
+    }()
+    
+    ///
     /// actionSheet初始化
-    init(headerTitle: String? = nil,
-         actionTitles:[String],
-         configuration: YQActionSheetConfiguration? = nil,
-         cellCommonConfiguration: YQActionSheetCellConfiguration? = nil,
-         selectCallBack: ((_ cell: YQActionSheetCell,_ index: Int) -> Void)? = nil,
-         cancelCallBack: (() -> Void)? = nil
-         ) {
+    ///
+    /// - Parameters:
+    ///   - headerTitle: 顶部的标题（可选）
+    ///   - actionTitles: 选项的标题（数组）
+    ///   - configuration: actionSheet的配置（可选）
+    ///   - cellCommonConfiguration: 每个选项的配置 （可选）
+    ///   - selectCallBack: 选中了选项后的回调（可选）
+    ///   - cancelCallBack: 选中了取消的回调（可选）
+    @objc init(headerTitle: String? = nil,
+               actionTitles:[String],
+               configuration: YQActionSheetConfiguration? = nil,
+               cellCommonConfiguration: YQActionSheetCellConfiguration? = nil,
+               selectCallBack: ((_ cell: YQActionSheetCell,_ index: Int) -> Void)? = nil,
+               cancelCallBack: (() -> Void)? = nil
+        ) {
         super.init(frame: UIScreen.main.bounds)
         
         didSelectCell = selectCallBack
@@ -97,7 +130,9 @@ class YQActionSheet: UIView {
             cellView.addSubview(cell)
             
             cell.didClik = { [weak self] selcell in
-                self?._dismiss()
+                if self?.config.toucheCellAutoHide == true {
+                    self?._dismiss()
+                }
                 self?.didSelectCell?(selcell,i)
             }
             
@@ -137,13 +172,6 @@ class YQActionSheet: UIView {
         scrv.backgroundColor = YQActionSheetConfiguration().cellClearanceColor
         scrv.contentSize = CGSize.zero
         return scrv
-    }()
-    var headerLab: UILabel = {
-        let lab = UILabel()
-        lab.font = UIFont.systemFont(ofSize: 12)
-        lab.textColor = YQActionSheetConfiguration().headerTitleColor
-        lab.textAlignment = .center
-        return lab
     }()
     
     func layout() {
