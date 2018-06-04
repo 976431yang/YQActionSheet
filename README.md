@@ -249,15 +249,15 @@
 	actionSheet.config.animationDuration = 2
 
 	actionSheet.applyConfigForEachCell { (cell, index) in
-	    cell.config.distanceToLeftRight = 15
-	    cell.config.blur = true
-	    cell.config.blurMode = .dark
-	    cell.config.titleColor = UIColor.white
-	    cell.layer.cornerRadius = 20
-	    if index == 2 {
-	        cell.config.titleColor = UIColor.red
-	        cell.titleLab.font = UIFont.systemFont(ofSize: 20)
-	    }
+		cell.config.distanceToLeftRight = 15
+		cell.config.blur = true
+		cell.config.blurMode = .dark
+		cell.config.titleColor = UIColor.white
+		cell.layer.cornerRadius = 20
+		if index == 2 {
+			cell.config.titleColor = UIColor.red
+			cell.titleLab.font = UIFont.systemFont(ofSize: 20)
+		}
 	}
 
 	actionSheet.show()
