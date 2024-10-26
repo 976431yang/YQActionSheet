@@ -323,14 +323,8 @@ class YQActionSheet: UIView {
     }
     
     func isIphoneX() -> Bool {
-        let screenWidth = UIScreen.main.bounds.size.width
-        let screenHeight = UIScreen.main.bounds.size.height
-        if (screenWidth == 375 && screenHeight == 812) ||
-            (screenWidth == 812 && screenHeight == 375) {
-            return true
-        } else {
-            return false
-        }
+        return UIDevice.current.userInterfaceIdiom == .phone &&
+        UIApplication.shared.delegate!.window!!.safeAreaInsets.bottom > 0
     }
     
     required init?(coder aDecoder: NSCoder) {
